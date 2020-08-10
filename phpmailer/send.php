@@ -5,6 +5,7 @@ require 'src/SMTP.php';
 require 'setting.php';
 
 // PHPMailerのインスタンス生成
+function send_mail($toName,$toMailAddr,$subject,$body){
     $mail = new PHPMailer\PHPMailer\PHPMailer();
 
     $mail->isSMTP(); // SMTPを使うようにメーラーを設定する
@@ -19,13 +20,12 @@ require 'setting.php';
     $mail->CharSet = "UTF-8";
     $mail->Encoding = "base64";
     $mail->setFrom(MAIL_FROM,MAIL_FROM_NAME);
-    $mail->addAddress('techtestriku@gmail.com', '受信者さん'); //受信者（送信先）を追加する
+    $mail->addAddress($toMailAddr, $toName); //受信者（送信先）を追加する
 //    $mail->addReplyTo('xxxxxxxxxx@xxxxxxxxxx','返信先');
 //    $mail->addCC('xxxxxxxxxx@xxxxxxxxxx'); // CCで追加
 //    $mail->addBcc('xxxxxxxxxx@xxxxxxxxxx'); // BCCで追加
-    $mail->Subject = MAIL_SUBJECT; // メールタイトル
+    $mail->Subject = $subject; // メールタイトル
     $mail->isHTML(true);    // HTMLフォーマットの場合はコチラを設定します
-    $body = 'test テスト';
 
     $mail->Body  = $body; // メール本文
     // メール送信の実行
@@ -35,3 +35,4 @@ require 'setting.php';
     } else {
     	echo '送信完了！';
     }
+}
