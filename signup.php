@@ -7,6 +7,6 @@ $mailAddr= $_POST["mailAddr"];
 $verify_num = 0;
 //セッションに保存？
 
-send_mail($name,$mailAddr,"認証番号です",$verify_num);
-
+//send_mail($name,$mailAddr,"認証番号です",$verify_num);
+header("location:verification.html")
 ?>
