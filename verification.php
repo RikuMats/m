@@ -1,6 +1,6 @@
 <?php
 require 'phpmailer/send.php';
-require 'config.php';
+require 'config_sql.php';
 
 $user_in = $_POST["verify_code"];
 
