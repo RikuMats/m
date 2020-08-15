@@ -12,7 +12,7 @@ $sql = "CREATE TABLE IF NOT EXISTS essential_user_data"
     ."id INT AUTO_INCREMENT PRIMARY KEY,"
     ."name char(32),"
     ."password char(6),"
-    ."e_mail TEXT"
+    ."email TEXT"
     .")";
 
 $stmt = $pdo->query($sql);
