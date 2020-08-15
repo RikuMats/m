@@ -18,7 +18,7 @@ if($count == 1){
     echo ' ログイン成功';
     //user名等をsessionに入れて置く
     $sql = "SELECT * FROM essential_user_data WHERE id=".$id;
-    $stmt = $pdo->query(sql);
+    $stmt = $pdo->query($sql);
     $result = $stmt->fetchAll();
     $row = $result[0];
 
@@ -27,6 +27,7 @@ if($count == 1){
     $_SESSION['id'] = $id;
     $_SESSION['name'] = $row['name'];
     $_SESSION['email'] = $row['email'];
+    header("location:home.php");
 
 }else{
     echo'ログイン失敗<br>'

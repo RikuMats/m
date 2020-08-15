@@ -2,12 +2,12 @@
 require 'phpmailer/send.php';
 
 $name = htmlspecialchars($_POST["name"]);
-$mailAddr= htmlspecialchars($_POST["email"]);
+$email= htmlspecialchars($_POST["email"]);
 
 //ランダム生成したい・数値としてではなく数字として6桁にしたい
 
 $verify_code = mt_rand(0,999999);
-//セッションに保存？
+//セッションに保存
 session_start();
 $_SESSION["verify_code"] = $verify_code;
 $_SESSION["name"]=$name;

@@ -15,6 +15,7 @@ echo $verify_code;
 if ($user_in !=$verify_code){
     echo "コードが違っています<br> <a href='verification.html'>戻る</a>";
 }else{
+    //パスワード生成
     $pass = substr(bin2hex(random_bytes(6)),0,6);
 
     //データベースに名前　パスワード　メールアドレスを保存
@@ -28,6 +29,7 @@ if ($user_in !=$verify_code){
 
 
     send_mail($name,$email,"sign up complete","お疲れ様です\nid:".$pdo->lastInsertId()."\n仮パスワード :".$pass);
+    header("location:signin.html");
 }
 
 
