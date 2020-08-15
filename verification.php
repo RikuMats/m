@@ -2,7 +2,7 @@
 require 'phpmailer/send.php';
 require 'config_sql.php';
 
-$user_in = $_POST["verify_code"];
+$user_in = htmlspecialchars($_POST["verify_code"]);
 
 //セッションなどからとってくる
 session_start();

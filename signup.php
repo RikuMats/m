@@ -1,7 +1,8 @@
 <?php
 require 'phpmailer/send.php';
-$name = $_POST["name"];
-$mailAddr= $_POST["email"];
+
+$name = htmlspecialchars($_POST["name"]);
+$mailAddr= htmlspecialchars($_POST["email"]);
 
 //ランダム生成したい・数値としてではなく数字として6桁にしたい
 

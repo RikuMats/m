@@ -1,8 +1,8 @@
 <?php
 require 'config_sql.php';
 
-$id = $_POST['id'];
-$password = $_POST['password'];
+$id = htmlspecialchars($_POST['id']);
+$password = htmlspecialchars($_POST['password']);
 $pdo = new PDO(DSN,USER,PASS,array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_WARNING));
 $sql = "SELECT COUNT(*) as cnt FROM essential_user_data WHERE id =:id AND password =:password";
 $prestmt = $pdo->prepare($sql);
