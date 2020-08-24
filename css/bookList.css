@@ -1,0 +1,14 @@
+#unreadBookList{
+    float: left;
+    width: 50%;
+}
+#redBookList{
+    float: left;
+    width: 50%;
+}
+#newBookButton{
+}
+
+.listArea{
+    float: center;
+}
