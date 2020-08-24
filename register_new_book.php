@@ -26,16 +26,17 @@ $prestmt->execute();
 $row = $prestmt->fetch();
 $book_id = $row['id'];//マスタから持ってきた本のid
 
-$sql = "INSERT IGNORE INTO users_book_table (book_id,user_id,status) VALUES(:book_id,:user_id,:status)";
+$sql = "INSERT IGNORE INTO user_book_table (book_id,user_id,status) VALUES(:book_id,:user_id,'unread')";
 $prestmt = $pdo->prepare($sql);
 $prestmt->bindParam(':book_id',$book_id,PDO::PARAM_INT);
 $prestmt->bindParam(':user_id',$_SESSION['id'],PDO::PARAM_INT);
-$prestmt->bindParam(':status',"unread",PDO::PARAM_STR);
 $prestmt->execute();
 
-$filepath ="img/".$book_id;
+$filepath ="book_img/".$book_id;
 move_uploaded_file($file['tmp_name'],$filepath);
 
 //個人と本を結びつけるデータベースに登録
 //未読、読了などの状態を保持できるようにする
+
+ header("location:home.php");
 ?>
