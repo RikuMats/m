@@ -8,23 +8,22 @@ $pdo = new PDO(DSN,USER,PASS,array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_WARNING));
 session_start();
 
 //本が読み終わった
-if(isset($_POST['bookID'])){
+if(isset($_POST['redBookID'])){
     $_SESSION['redBookID'] = $_POST['redBookID'];
     $sql = "SELECT * from bookmaster where id=:id";
     $prestmt= $pdo->prepare($sql);
-    $prestmt->bindParam(':id',$_POST['bookID'],PDO::PARAM_INT);
+    $prestmt->bindParam(':id',$_POST['redBookID'],PDO::PARAM_INT);
     $prestmt->execute();
     $row = $prestmt->fetch();
-
- 
 }
 
 //感想を書いた
 if(isset($_POST['review'])){
-    $sql= "UPDATE user_book_table SET status='red',review=:review where user_id=:user_id AND book_id=:book_id";
+    $sql= "UPDATE user_book_table SET status='red',review=:review,redDateTime=:redDateTime where user_id=:user_id AND book_id=:book_id";
     $prestmt = $pdo->prepare($sql);
     $prestmt->bindParam(':user_id',$_SESSION['id'],PDO::PARAM_INT);
     $prestmt->bindParam(':book_id',$_SESSION['redBookID'],PDO::PARAM_STR);
+    $prestmt->bindParam(':redDateTime',date('Y-m-d h:i:s'));
     $prestmt->bindParam(':review',$_POST['review'],PDO::PARAM_STR);
     $prestmt->execute();
 

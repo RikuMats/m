@@ -35,6 +35,7 @@ $sql = "CREATE TABLE IF NOT EXISTS user_book_table"
     ."book_id INT,"
     ."user_id INT,"
     ."status char(10),"//unread,red
+    ."redDateTime datetime,"
     ."review TEXT"
     .")";
 echo "end";
