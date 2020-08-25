@@ -40,7 +40,7 @@ $result_red = $stmt->fetchAll();
                 <?php
                 foreach($result_unread as $row)
                 echo "<tr>".
-                    "<td><img src = 'book_img/{$row["book_id"]}'width=40px height=60px></td>"
+                    "<td><img src = 'book_img/{$row["book_id"]}'width=80px height=120px></td>"
                     ."<td>{$row['title']}</td>"
                     ."<td>{$row['author']}</td>"
                     ."<td><button type='submit' name='redBookID' value={$row["book_id"]}>読了</button></td>"
@@ -53,7 +53,7 @@ $result_red = $stmt->fetchAll();
                 <?php
                 foreach($result_red as $row)
                 echo "<tr>".
-                    "<td><img src = 'book_img/{$row["book_id"]}' width=40px height=60px></td>"
+                    "<td><img src = 'book_img/{$row["book_id"]}' width=80px height=120px></td>"
                     ."<td>{$row['title']}</td>"
                     ."<td>{$row['author']}</td>"
                 ."</tr>";

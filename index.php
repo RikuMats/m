@@ -22,7 +22,7 @@ $result = $stmt->fetchAll();
     <button type="button" onclick="location.href='signin.html'">sign in</button>
     <button type="button" onclick="location.href='signup.html'">sign up</button>
     <br>
-    <table>
+    <table style='width=100%'>
         <caption>最近読まれた本</caption>
         <?php
         foreach($result as $row)
@@ -30,7 +30,7 @@ $result = $stmt->fetchAll();
             <td><img src='book_img/{$row["book_id"]}' width=120px height=180px></td>
             <td>{$row['title']}</td>
             <td>{$row['author']}</td>
-            <td>{$row['redDateTime']}</td>
+            <td>{$row['review']}</td>
         </tr>";
         ?>
     </table>
