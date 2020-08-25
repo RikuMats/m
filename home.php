@@ -4,14 +4,6 @@ $pdo = new PDO(DSN,USER,PASS,array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_WARNING));
 
 session_start();
 
-//本が読み終わった
-if(isset($_POST['bookID'])){
-    $sql= "UPDATE user_book_table SET status='red' where user_id=:user_id AND book_id=:book_id";
-    $prestmt = $pdo->prepare($sql);
-    $prestmt->bindParam(':user_id',$_SESSION['id'],PDO::PARAM_STR);
-    $prestmt->bindParam(':book_id',$_POST['bookID'],PDO::PARAM_STR);
-    $prestmt->execute();
-}
 
 //登録した本をデータベースから読み込む
 $sql = "SELECT * FROM bookmaster INNER JOIN user_book_table 
@@ -42,7 +34,7 @@ $result_red = $stmt->fetchAll();
             <button type="button" id="newBookButton" onclick="location.href='register_new_book.html'">新しい本の登録</button>
 
         <div class="listArea">
-            <form action="" method="post">
+            <form action="book_red.php" method="post">
             <table id = "unreadBookList">
                 <caption>未読の本</caption>
                 <?php
@@ -51,7 +43,7 @@ $result_red = $stmt->fetchAll();
                     "<td><img src = 'book_img/{$row["book_id"]}'width=40px height=60px></td>"
                     ."<td>{$row['title']}</td>"
                     ."<td>{$row['author']}</td>"
-                    ."<td><button type='submit' name='bookID' value={$row["book_id"]}>読了</button></td>"
+                    ."<td><button type='submit' name='redBookID' value={$row["book_id"]}>読了</button></td>"
                 ."</tr>";
                 ?>
             </table>

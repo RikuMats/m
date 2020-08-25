@@ -34,7 +34,8 @@ $sql = "CREATE TABLE IF NOT EXISTS user_book_table"
     ."("
     ."book_id INT,"
     ."user_id INT,"
-    ."status char(10)"//unread,red
+    ."status char(10),"//unread,red
+    ."review TEXT"
     .")";
 echo "end";
 $stmt = $pdo->query($sql);
