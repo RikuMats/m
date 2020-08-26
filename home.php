@@ -25,7 +25,17 @@ $result_red = $stmt->fetchAll();
     <head>
         <title> home</title>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="css/bookList.css">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- BootstrapのCSS読み込み -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- jQuery読み込み -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- BootstrapのJS読み込み -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    
     </head>
 
     <body>
@@ -33,32 +43,41 @@ $result_red = $stmt->fetchAll();
         <h1>ようこそ <?php echo $_SESSION['name']; ?>さん</h1>
             <button type="button" id="newBookButton" onclick="location.href='register_new_book.html'">新しい本の登録</button>
 
-        <div class="listArea">
-            <form action="book_red.php" method="post">
-            <table id = "unreadBookList">
-                <caption>未読の本</caption>
-                <?php
-                foreach($result_unread as $row)
-                echo "<tr>".
-                    "<td><img src = 'book_img/{$row["book_id"]}'width=80px height=120px></td>"
-                    ."<td>{$row['title']}</td>"
-                    ."<td>{$row['author']}</td>"
-                    ."<td><button type='submit' name='redBookID' value={$row["book_id"]}>読了</button></td>"
-                ."</tr>";
-                ?>
-            </table>
-            </form>
-            <table id = "redBookList">
-                <caption>読み終わった本</caption>
-                <?php
-                foreach($result_red as $row)
-                echo "<tr>".
-                    "<td><img src = 'book_img/{$row["book_id"]}' width=80px height=120px></td>"
-                    ."<td>{$row['title']}</td>"
-                    ."<td>{$row['author']}</td>"
-                ."</tr>";
-                ?>
-            </table>
+        <div class="container-fluid row">
+            <div class="col-sm-6 container">
+                <form action="book_red.php" method="post">
+
+                    <table id = "unreadBookList" class="table table-striped" >
+                        <caption>未読の本</caption>
+                        <tbody>
+                        <?php
+                        foreach($result_unread as $row)
+                        echo "<tr>".
+                            "<td><img src = 'book_img/{$row["book_id"]}'width=80px height=120px></td>"
+                            ."<td>{$row['title']}</td>"
+                            ."<td>{$row['author']}</td>"
+                            ."<td><button type='submit' name='redBookID' value={$row["book_id"]}>読了</button></td>"
+                        ."</tr>";
+                        ?>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+            <div class="col-sm-6 container" >
+                <table id = "redBookList" class="table table-striped">
+                    <caption>読み終わった本</caption>
+                    <tbody>
+                    <?php
+                       foreach($result_red as $row)
+                            echo "<tr>".
+                            "<td><img src = 'book_img/{$row["book_id"]}' width=80px height=120px></td>"
+                            ."<td>{$row['title']}</td>"
+                            ."<td>{$row['author']}</td>"
+                            ."</tr>";
+                    ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
     </body>
