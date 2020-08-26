@@ -39,13 +39,15 @@ $result_red = $stmt->fetchAll();
     </head>
 
     <body>
-       
+       <div class="jumbotron">
         <h1>ようこそ <?php echo $_SESSION['name']; ?>さん</h1>
-            <button type="button" id="newBookButton" onclick="location.href='register_new_book.html'">新しい本の登録</button>
+        <p>ここはあなたの本棚です。これから読む本は登録しましょう。読み終わった本は読了ボタンを押して感想を書きましょう。</p>
+        </div>
+        <button type="button" id="newBookButton" class="btn btn-primary" onclick="location.href='register_new_book.html'">新しい本の登録</button>
 
         <div class="container-fluid row">
             <div class="col-sm-6 container">
-                <form action="book_red.php" method="post">
+            <form action="book_red.php" method="post">
 
                     <table id = "unreadBookList" class="table table-striped" >
                         <caption>未読の本</caption>
@@ -56,7 +58,7 @@ $result_red = $stmt->fetchAll();
                             "<td><img src = 'book_img/{$row["book_id"]}'width=80px height=120px></td>"
                             ."<td>{$row['title']}</td>"
                             ."<td>{$row['author']}</td>"
-                            ."<td><button type='submit' name='redBookID' value={$row["book_id"]}>読了</button></td>"
+                            ."<td><button type='submit' class='btn btn-info' name='redBookID' value={$row["book_id"]}>読了</button></td>"
                         ."</tr>";
                         ?>
                         </tbody>
